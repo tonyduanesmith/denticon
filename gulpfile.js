@@ -15,3 +15,15 @@ gulp.task('babelify',()=>{
         }))
         .pipe(gulp.dest('dist/js'))
 })
+
+gulp.task('html',()=>{
+    gulp.src('dist/**/*.html')
+})
+
+gulp.task('watch', ()=>{
+    gulp.watch('src/js/**/*.js', ['babelify']);
+    gulp.watch('src/less/**/*.less', ['less']);
+    gulp.watch('dist/**/*.html', ['html']);
+})
+
+gulp.task('default', ['watch'])
