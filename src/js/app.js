@@ -5,4 +5,4 @@ const options = {
     shape: 'circle',
 };
 
-denticon.denticon('#denticon', 'mike', options);
+denticon.denticon('#denticon', 'tonyduane', options);

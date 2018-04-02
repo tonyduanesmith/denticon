@@ -10947,6 +10947,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 				manySquare(usernameHash);
 			} else if (actual.shape == 'square' && actual.pixels == 'few') {
 				fewSquare(usernameHash);
+			} else if (actual.shape == 'circle' && actual.pixels == 'many') {
+				manyCircle(usernameHash);
 			} else if (actual.shape == 'circle' && actual.pixels == 'few') {
 				fewCircle(usernameHash);
 			}
@@ -10971,6 +10973,34 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 						svgConstruct += "<rect \n                x=\"" + x + "\"\n                y=\"" + y + "\" \n                width=\"5\" \n                height=\"5\" \n                style=\"fill: " + colour + ";\"/>";
 						// mirror
 						svgConstruct += "<rect \n                x=\"" + (45 - x) + "\"\n                y=\"" + y + "\" \n                width=\"5\" \n                height=\"5\" \n                style=\"fill: " + colour + ";\"/>";
+						x += 5;
+					}
+					y += 5;
+				}
+				svgConstruct += "</svg>";
+				$(selector).append(svgConstruct);
+			}
+
+			/**
+    * construction of the svg
+    * @param {String} usernameHash  - username hashed
+    */
+			function manyCircle(usernameHash) {
+				var regexPat = /[02468ace]/g;
+				var svgConstruct = '';
+				svgConstruct += "<svg version=\"1.1\" \n                        xmlns=\"http://www.w3.org/2000/svg\" \n                        xmlns: xlink=\"http://www.w3.org/1999/xlink\" \n                        x=\"0px\" \n                        y=\"0px\"\n                        viewBox=\"0 0 50 50\" \n                        xml: space=\"preserve\">";
+				var y = 0;
+				for (var j = 0; j < 10; j++) {
+					var x = 0;
+					for (var i = 0; i < 5; i++) {
+						var charNo = j * 5 + i;
+						var colour = colourPicker(usernameHash, actual.colour);
+						if (regexPat.test(usernameHash[charNo])) {
+							colour = '#ffffff';
+						}
+						svgConstruct += "<circle \n                cx=\"" + (x + 2.5) + "\"\n                cy=\"" + (y + 2.5) + "\" \n                r=\"2.5\"  \n                style=\"fill: " + colour + ";\"/>";
+						// mirror
+						svgConstruct += "<circle \n                cx=\"" + (45 - x + 2.5) + "\"\n                cy=\"" + (y + 2.5) + "\" \n                r=\"2.5\"  \n                style=\"fill: " + colour + ";\"/>";
 						x += 5;
 					}
 					y += 5;
@@ -11111,5 +11141,5 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 			shape: 'circle'
 		};
 
-		denticon.denticon('#denticon', 'mike', options);
+		denticon.denticon('#denticon', 'tonyduane', options);
 	}, { "./denticon": 16 }] }, {}, [17]);

@@ -23,6 +23,8 @@ function denticon(selector, username, options) {
         manySquare(usernameHash);
     } else if (actual.shape == 'square' && actual.pixels == 'few') {
         fewSquare(usernameHash);
+    } else if (actual.shape == 'circle' && actual.pixels == 'many') {
+        manyCircle(usernameHash);
     } else if (actual.shape == 'circle' && actual.pixels == 'few') {
         fewCircle(usernameHash);
     }
@@ -62,6 +64,48 @@ function denticon(selector, username, options) {
                 y="${y}" 
                 width="5" 
                 height="5" 
+                style="fill: ${colour};"/>`;
+                x += 5;
+            }
+        y += 5;
+        }
+        svgConstruct += `</svg>`;
+        $(selector).append(svgConstruct);
+    }
+
+    /**
+     * construction of the svg
+     * @param {String} usernameHash  - username hashed
+     */
+    function manyCircle(usernameHash) {
+        const regexPat = /[02468ace]/g;
+        let svgConstruct = '';
+        svgConstruct += `<svg version="1.1" 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        xmlns: xlink="http://www.w3.org/1999/xlink" 
+                        x="0px" 
+                        y="0px"
+                        viewBox="0 0 50 50" 
+                        xml: space="preserve">`;
+        let y = 0;
+        for (let j = 0; j < 10; j++) {
+            let x = 0;
+            for (let i = 0; i < 5; i++) {
+                let charNo = (j * 5) + i;
+                let colour = colourPicker(usernameHash, actual.colour);
+                if (regexPat.test(usernameHash[charNo])) {
+                    colour = '#ffffff';
+                }
+                svgConstruct += `<circle 
+                cx="${x + 2.5}"
+                cy="${y + 2.5}" 
+                r="2.5"  
+                style="fill: ${colour};"/>`;
+                // mirror
+                svgConstruct += `<circle 
+                cx="${45 - x + 2.5}"
+                cy="${y + 2.5}" 
+                r="2.5"  
                 style="fill: ${colour};"/>`;
                 x += 5;
             }
