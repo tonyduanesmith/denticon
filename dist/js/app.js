@@ -10931,6 +10931,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
    * @param {Object} options - specific options for denticon
    */
 		function denticon(selector, username, options) {
+			// defaults
+			var defaults = {
+				colour: 'default',
+				pixels: 'many'
+			};
+			var actual = Object.assign({}, defaults, options);
+			console.log(actual.colour);
 			console.log('Building Denticon...');
 			//  hash username
 			var usernameHash = hash.sha256().update(username).digest('hex');
@@ -10946,14 +10953,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 			function svgConstruct(usernameHash) {
 				var regexPat = /[02468ace]/g;
 				var svgConstruct = '';
-				svgConstruct += "<svg version=\"1.1\" \n                        xmlns=\"http://www.w3.org/2000/svg\" \n                        xmlns: xlink=\"http://www.w3.org/1999/xlink\" \n                        x=\"0px\" \n                        y=\"0px\"\n                        viewBox=\"0 0 50 50\" \n                        style=\"enable-background:new 0 0 612 792;\" \n                        xml: space=\"preserve\">";
+				svgConstruct += "<svg version=\"1.1\" \n                        xmlns=\"http://www.w3.org/2000/svg\" \n                        xmlns: xlink=\"http://www.w3.org/1999/xlink\" \n                        x=\"0px\" \n                        y=\"0px\"\n                        viewBox=\"0 0 50 50\" \n                        xml: space=\"preserve\">";
 				var y = 0;
 				for (var j = 0; j < 10; j++) {
 					var x = 0;
 					for (var i = 0; i < 5; i++) {
 						var charNo = j * 5 + i;
-						var colour = colourPicker(usernameHash);
-						console.log(charNo);
+						var colour = colourPicker(usernameHash, actual.colour);
 						if (regexPat.test(usernameHash[charNo])) {
 							colour = '#ffffff';
 						}
@@ -10973,11 +10979,14 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 			/**
     * Chooses colour from 16 predefined
     * @param {String} usernameHash - first char of hash to pick colour
+    * @param {String} colourOveride - overides random coolour selection with user selected colour
     * @return {String} - returns a hex colour
     */
-			function colourPicker(usernameHash) {
+			function colourPicker(usernameHash, colourOveride) {
+				if (colourOveride != 'default') {
+					return colourOveride;
+				}
 				var picker = usernameHash[0];
-
 				switch (picker) {
 					case '0':
 						return '#1ABC9C';
@@ -11038,5 +11047,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 	}, { "hash.js": 1, "jquery": 14 }], 17: [function (require, module, exports) {
 		var denticon = require('./denticon');
 
-		denticon.denticon('#denticon', 'tilly');
+		var options = {
+			pixels: 'many'
+		};
+
+		denticon.denticon('#denticon', 'terry', options);
 	}, { "./denticon": 16 }] }, {}, [17]);

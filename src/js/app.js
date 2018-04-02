@@ -1,3 +1,7 @@
 const denticon = require('./denticon');
 
-denticon.denticon('#denticon', 'tilly');
+const options = {
+    pixels: 'many',
+};
+
+denticon.denticon('#denticon', 'terry', options);

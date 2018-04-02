@@ -7,6 +7,13 @@ const hash = require('hash.js');
  * @param {Object} options - specific options for denticon
  */
 function denticon(selector, username, options) {
+    // defaults
+    let defaults = {
+        colour: 'default',
+        pixels: 'many',
+    };
+    let actual = Object.assign({}, defaults, options);
+    console.log(actual.colour);
     console.log('Building Denticon...');
     //  hash username
     const usernameHash = hash.sha256().update(username).digest('hex');
@@ -29,15 +36,13 @@ function denticon(selector, username, options) {
                         x="0px" 
                         y="0px"
                         viewBox="0 0 50 50" 
-                        style="enable-background:new 0 0 612 792;" 
                         xml: space="preserve">`;
                             let y = 0;
                             for (let j = 0; j < 10; j++) {
                                 let x = 0;
                                 for (let i = 0; i < 5; i++) {
                                     let charNo = (j * 5) + i;
-                                    let colour = colourPicker(usernameHash);
-                                    console.log(charNo);
+                                    let colour = colourPicker(usernameHash, actual.colour);
                                     if (regexPat.test(usernameHash[charNo])) {
                                         colour = '#ffffff';
                                     }
@@ -68,11 +73,14 @@ function denticon(selector, username, options) {
     /**
      * Chooses colour from 16 predefined
      * @param {String} usernameHash - first char of hash to pick colour
+     * @param {String} colourOveride - overides random coolour selection with user selected colour
      * @return {String} - returns a hex colour
      */
-    function colourPicker(usernameHash) {
+    function colourPicker(usernameHash, colourOveride) {
+        if (colourOveride != 'default') {
+            return colourOveride;
+        }
         const picker = usernameHash[0];
-
         switch (picker) {
             case '0':
                 return '#1ABC9C';
