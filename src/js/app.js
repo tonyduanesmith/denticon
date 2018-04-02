@@ -1,8 +1,10 @@
 const denticon = require('./denticon');
 
 const options = {
-    pixels: 'few',
-    shape: 'circle',
+    pixels: 'many',
+    shape: 'square',
+    strokeWidth: 1,
+    strokeColor: '#353535',
 };
 
-denticon.denticon('#denticon', 'tonyduane', options);
+denticon.denticon('#denticon', 'emma hewitt', options);

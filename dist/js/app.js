@@ -10935,7 +10935,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 			var defaults = {
 				colour: 'default',
 				pixels: 'many',
-				shape: 'square'
+				shape: 'square',
+				strokeColor: '#ffffff',
+				strokeWidth: 0
 			};
 			var actual = Object.assign({}, defaults, options);
 
@@ -10970,9 +10972,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 						if (regexPat.test(usernameHash[charNo])) {
 							colour = '#ffffff';
 						}
-						svgConstruct += "<rect \n                x=\"" + x + "\"\n                y=\"" + y + "\" \n                width=\"5\" \n                height=\"5\" \n                style=\"fill: " + colour + ";\"/>";
+						svgConstruct += "<rect \n                x=\"" + x + "\"\n                y=\"" + y + "\" \n                width=\"5\" \n                height=\"5\" \n                style=\"fill: " + colour + ";\n                stroke-width:" + actual.strokeWidth + ";\n                stroke:" + actual.strokeColor + ";\"/>";
 						// mirror
-						svgConstruct += "<rect \n                x=\"" + (45 - x) + "\"\n                y=\"" + y + "\" \n                width=\"5\" \n                height=\"5\" \n                style=\"fill: " + colour + ";\"/>";
+						svgConstruct += "<rect \n                x=\"" + (45 - x) + "\"\n                y=\"" + y + "\" \n                width=\"5\" \n                height=\"5\" \n                style=\"fill: " + colour + ";\n                stroke-width:" + actual.strokeWidth + ";\n                stroke:" + actual.strokeColor + ";\"/>";
 						x += 5;
 					}
 					y += 5;
@@ -10998,9 +11000,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 						if (regexPat.test(usernameHash[charNo])) {
 							colour = '#ffffff';
 						}
-						svgConstruct += "<circle \n                cx=\"" + (x + 2.5) + "\"\n                cy=\"" + (y + 2.5) + "\" \n                r=\"2.5\"  \n                style=\"fill: " + colour + ";\"/>";
+						svgConstruct += "<circle \n                cx=\"" + (x + 2.5) + "\"\n                cy=\"" + (y + 2.5) + "\" \n                r=\"2.5\"  \n                style=\"fill: " + colour + ";\n                stroke-width:" + actual.strokeWidth + ";\n                stroke:" + actual.strokeColor + ";\"/>";
 						// mirror
-						svgConstruct += "<circle \n                cx=\"" + (45 - x + 2.5) + "\"\n                cy=\"" + (y + 2.5) + "\" \n                r=\"2.5\"  \n                style=\"fill: " + colour + ";\"/>";
+						svgConstruct += "<circle \n                cx=\"" + (45 - x + 2.5) + "\"\n                cy=\"" + (y + 2.5) + "\" \n                r=\"2.5\"  \n                style=\"fill: " + colour + ";\n                stroke-width:" + actual.strokeWidth + ";\n                stroke:" + actual.strokeColor + ";\"/>";
 						x += 5;
 					}
 					y += 5;
@@ -11026,9 +11028,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 						if (regexPat.test(usernameHash[charNo])) {
 							colour = '#ffffff';
 						}
-						svgConstruct += "<rect \n                                    x=\"" + x + "\"\n                                    y=\"" + y + "\" \n                                    width=\"10\" \n                                    height=\"10\" \n                                    style=\"fill: " + colour + ";\"/>";
+						svgConstruct += "<rect \n                                x=\"" + x + "\"\n                                y=\"" + y + "\" \n                                width=\"10\" \n                                height=\"10\" \n                                style=\"fill: " + colour + ";\n                                stroke-width:" + actual.strokeWidth + ";\n                                stroke:" + actual.strokeColor + ";\"/>";
 						// mirror
-						svgConstruct += "<rect \n                                    x=\"" + (40 - x) + "\"\n                                    y=\"" + y + "\" \n                                    width=\"10\" \n                                    height=\"10\" \n                                    style=\"fill: " + colour + ";\"/>";
+						svgConstruct += "<rect \n                                x=\"" + (40 - x) + "\"\n                                y=\"" + y + "\" \n                                width=\"10\" \n                                height=\"10\" \n                                style=\"fill: " + colour + ";\n                                stroke-width:" + actual.strokeWidth + ";\n                                stroke:" + actual.strokeColor + ";\"/>";
 						x += 10;
 					}
 					y += 10;
@@ -11054,9 +11056,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 						if (regexPat.test(usernameHash[charNo])) {
 							colour = '#ffffff';
 						}
-						svgConstruct += "<circle \n                                    cx=\"" + (x + 5) + "\"\n                                    cy=\"" + (y + 5) + "\" \n                                    r=\"5\" \n                                    style=\"fill: " + colour + ";\"/>";
+						svgConstruct += "<circle \n                                cx=\"" + (x + 5) + "\"\n                                cy=\"" + (y + 5) + "\" \n                                r=\"5\" \n                                style=\"fill: " + colour + ";\n                                stroke-width:" + actual.strokeWidth + ";\n                                stroke:" + actual.strokeColor + ";\"/>";
 						// // mirror
-						svgConstruct += "<circle \n                                    cx=\"" + (40 - x + 5) + "\"\n                                    cy=\"" + (y + 5) + "\" \n                                    r=\"5\" \n                                    style=\"fill: " + colour + ";\"/>";
+						svgConstruct += "<circle \n                                cx=\"" + (40 - x + 5) + "\"\n                                cy=\"" + (y + 5) + "\" \n                                r=\"5\" \n                                style=\"fill: " + colour + ";\n                                stroke-width:" + actual.strokeWidth + ";\n                                stroke:" + actual.strokeColor + ";\"/>";
 						x += 10;
 					}
 					y += 10;
@@ -11137,9 +11139,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 		var denticon = require('./denticon');
 
 		var options = {
-			pixels: 'few',
-			shape: 'circle'
+			pixels: 'many',
+			shape: 'square',
+			strokeWidth: 1,
+			strokeColor: '#353535'
 		};
 
-		denticon.denticon('#denticon', 'tonyduane', options);
+		denticon.denticon('#denticon', 'emma hewitt', options);
 	}, { "./denticon": 16 }] }, {}, [17]);

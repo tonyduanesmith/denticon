@@ -12,6 +12,8 @@ function denticon(selector, username, options) {
         colour: 'default',
         pixels: 'many',
         shape: 'square',
+        strokeColor: '#ffffff',
+        strokeWidth: 0,
     };
     let actual = Object.assign({}, defaults, options);
 
@@ -57,14 +59,18 @@ function denticon(selector, username, options) {
                 y="${y}" 
                 width="5" 
                 height="5" 
-                style="fill: ${colour};"/>`;
+                style="fill: ${colour};
+                stroke-width:${actual.strokeWidth};
+                stroke:${actual.strokeColor};"/>`;
                 // mirror
                 svgConstruct += `<rect 
                 x="${45 - x}"
                 y="${y}" 
                 width="5" 
                 height="5" 
-                style="fill: ${colour};"/>`;
+                style="fill: ${colour};
+                stroke-width:${actual.strokeWidth};
+                stroke:${actual.strokeColor};"/>`;
                 x += 5;
             }
         y += 5;
@@ -100,13 +106,17 @@ function denticon(selector, username, options) {
                 cx="${x + 2.5}"
                 cy="${y + 2.5}" 
                 r="2.5"  
-                style="fill: ${colour};"/>`;
+                style="fill: ${colour};
+                stroke-width:${actual.strokeWidth};
+                stroke:${actual.strokeColor};"/>`;
                 // mirror
                 svgConstruct += `<circle 
                 cx="${45 - x + 2.5}"
                 cy="${y + 2.5}" 
                 r="2.5"  
-                style="fill: ${colour};"/>`;
+                style="fill: ${colour};
+                stroke-width:${actual.strokeWidth};
+                stroke:${actual.strokeColor};"/>`;
                 x += 5;
             }
         y += 5;
@@ -139,18 +149,22 @@ function denticon(selector, username, options) {
                     colour = '#ffffff';
                 }
                 svgConstruct += `<rect 
-                                    x="${x}"
-                                    y="${y}" 
-                                    width="10" 
-                                    height="10" 
-                                    style="fill: ${colour};"/>`;
+                                x="${x}"
+                                y="${y}" 
+                                width="10" 
+                                height="10" 
+                                style="fill: ${colour};
+                                stroke-width:${actual.strokeWidth};
+                                stroke:${actual.strokeColor};"/>`;
                 // mirror
                 svgConstruct += `<rect 
-                                    x="${40 - x}"
-                                    y="${y}" 
-                                    width="10" 
-                                    height="10" 
-                                    style="fill: ${colour};"/>`;
+                                x="${40 - x}"
+                                y="${y}" 
+                                width="10" 
+                                height="10" 
+                                style="fill: ${colour};
+                                stroke-width:${actual.strokeWidth};
+                                stroke:${actual.strokeColor};"/>`;
                 x += 10;
             }
             y += 10;
@@ -183,16 +197,20 @@ function denticon(selector, username, options) {
                     colour = '#ffffff';
                 }
                 svgConstruct += `<circle 
-                                    cx="${x + 5}"
-                                    cy="${y + 5}" 
-                                    r="5" 
-                                    style="fill: ${colour};"/>`;
+                                cx="${x + 5}"
+                                cy="${y + 5}" 
+                                r="5" 
+                                style="fill: ${colour};
+                                stroke-width:${actual.strokeWidth};
+                                stroke:${actual.strokeColor};"/>`;
                 // // mirror
                 svgConstruct += `<circle 
-                                    cx="${40 - x + 5}"
-                                    cy="${y + 5}" 
-                                    r="5" 
-                                    style="fill: ${colour};"/>`;
+                                cx="${40 - x + 5}"
+                                cy="${y + 5}" 
+                                r="5" 
+                                style="fill: ${colour};
+                                stroke-width:${actual.strokeWidth};
+                                stroke:${actual.strokeColor};"/>`;
                 x += 10;
             }
             y += 10;
