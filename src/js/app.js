@@ -1,7 +1,8 @@
 const denticon = require('./denticon');
 
 const options = {
-    pixels: 'many',
+    pixels: 'few',
+    shape: 'circle',
 };
 
-denticon.denticon('#denticon', 'terry', options);
+denticon.denticon('#denticon', 'mike', options);

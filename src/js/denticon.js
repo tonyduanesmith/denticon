@@ -11,23 +11,27 @@ function denticon(selector, username, options) {
     let defaults = {
         colour: 'default',
         pixels: 'many',
+        shape: 'square',
     };
     let actual = Object.assign({}, defaults, options);
-    console.log(actual.colour);
-    console.log('Building Denticon...');
+
     //  hash username
     const usernameHash = hash.sha256().update(username).digest('hex');
-    console.log(usernameHash);
-    // construct
-    svgConstruct(usernameHash);
 
+    // construct type
+    if (actual.shape == 'square' && actual.pixels == 'many') {
+        manySquare(usernameHash);
+    } else if (actual.shape == 'square' && actual.pixels == 'few') {
+        fewSquare(usernameHash);
+    } else if (actual.shape == 'circle' && actual.pixels == 'few') {
+        fewCircle(usernameHash);
+    }
 
     /**
      * construction of the svg
      * @param {String} usernameHash  - username hashed
-     * @param {String} colour - passed hex colour
      */
-    function svgConstruct(usernameHash) {
+    function manySquare(usernameHash) {
         const regexPat = /[02468ace]/g;
         let svgConstruct = '';
         svgConstruct += `<svg version="1.1" 
@@ -37,43 +41,126 @@ function denticon(selector, username, options) {
                         y="0px"
                         viewBox="0 0 50 50" 
                         xml: space="preserve">`;
-                            let y = 0;
-                            for (let j = 0; j < 10; j++) {
-                                let x = 0;
-                                for (let i = 0; i < 5; i++) {
-                                    let charNo = (j * 5) + i;
-                                    let colour = colourPicker(usernameHash, actual.colour);
-                                    if (regexPat.test(usernameHash[charNo])) {
-                                        colour = '#ffffff';
-                                    }
-                                    svgConstruct += `<rect 
+        let y = 0;
+        for (let j = 0; j < 10; j++) {
+            let x = 0;
+            for (let i = 0; i < 5; i++) {
+                let charNo = (j * 5) + i;
+                let colour = colourPicker(usernameHash, actual.colour);
+                if (regexPat.test(usernameHash[charNo])) {
+                    colour = '#ffffff';
+                }
+                svgConstruct += `<rect 
+                x="${x}"
+                y="${y}" 
+                width="5" 
+                height="5" 
+                style="fill: ${colour};"/>`;
+                // mirror
+                svgConstruct += `<rect 
+                x="${45 - x}"
+                y="${y}" 
+                width="5" 
+                height="5" 
+                style="fill: ${colour};"/>`;
+                x += 5;
+            }
+        y += 5;
+        }
+        svgConstruct += `</svg>`;
+        $(selector).append(svgConstruct);
+    }
+
+    /**
+     * construction of the svg
+     * @param {String} usernameHash  - username hashed
+     */
+    function fewSquare(usernameHash) {
+        const regexPat = /[02468ace]/g;
+        let svgConstruct = '';
+        svgConstruct += `<svg version="1.1" 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        xmlns: xlink="http://www.w3.org/1999/xlink" 
+                        x="0px" 
+                        y="0px"
+                        viewBox="0 0 50 50" 
+                        xml: space="preserve">`;
+        let y = 0;
+        for (let j = 0; j < 5; j++) {
+            let x = 0;
+            for (let i = 0; i < 3; i++) {
+                let charNo = (j * 3) + i;
+                let colour = colourPicker(usernameHash, actual.colour);
+                if (regexPat.test(usernameHash[charNo])) {
+                    colour = '#ffffff';
+                }
+                svgConstruct += `<rect 
                                     x="${x}"
                                     y="${y}" 
-                                    width="5" 
-                                    height="5" 
+                                    width="10" 
+                                    height="10" 
                                     style="fill: ${colour};"/>`;
-                                    // mirror
-                                    svgConstruct += `<rect 
-                                    x="${45 - x}"
+                // mirror
+                svgConstruct += `<rect 
+                                    x="${40 - x}"
                                     y="${y}" 
-                                    width="5" 
-                                    height="5" 
+                                    width="10" 
+                                    height="10" 
                                     style="fill: ${colour};"/>`;
-                                    x += 5;
-                                }
-                            y += 5;
-                          }
-
-
+                x += 10;
+            }
+            y += 10;
+        }
         svgConstruct += `</svg>`;
+        $(selector).append(svgConstruct);
+    }
 
+    /**
+     * construction of the svg
+     * @param {String} usernameHash  - username hashed
+     */
+    function fewCircle(usernameHash) {
+        const regexPat = /[02468ace]/g;
+        let svgConstruct = '';
+        svgConstruct += `<svg version="1.1" 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        xmlns: xlink="http://www.w3.org/1999/xlink" 
+                        x="0px" 
+                        y="0px"
+                        viewBox="0 0 50 50" 
+                        xml: space="preserve">`;
+        let y = 0;
+        for (let j = 0; j < 5; j++) {
+            let x = 0;
+            for (let i = 0; i < 3; i++) {
+                let charNo = (j * 3) + i;
+                let colour = colourPicker(usernameHash, actual.colour);
+                if (regexPat.test(usernameHash[charNo])) {
+                    colour = '#ffffff';
+                }
+                svgConstruct += `<circle 
+                                    cx="${x + 5}"
+                                    cy="${y + 5}" 
+                                    r="5" 
+                                    style="fill: ${colour};"/>`;
+                // // mirror
+                svgConstruct += `<circle 
+                                    cx="${40 - x + 5}"
+                                    cy="${y + 5}" 
+                                    r="5" 
+                                    style="fill: ${colour};"/>`;
+                x += 10;
+            }
+            y += 10;
+        }
+        svgConstruct += `</svg>`;
         $(selector).append(svgConstruct);
     }
 
     /**
      * Chooses colour from 16 predefined
      * @param {String} usernameHash - first char of hash to pick colour
-     * @param {String} colourOveride - overides random coolour selection with user selected colour
+     * @param {String} colourOveride - overides random coolour selection
      * @return {String} - returns a hex colour
      */
     function colourPicker(usernameHash, colourOveride) {

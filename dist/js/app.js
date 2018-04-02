@@ -10934,23 +10934,28 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 			// defaults
 			var defaults = {
 				colour: 'default',
-				pixels: 'many'
+				pixels: 'many',
+				shape: 'square'
 			};
 			var actual = Object.assign({}, defaults, options);
-			console.log(actual.colour);
-			console.log('Building Denticon...');
+
 			//  hash username
 			var usernameHash = hash.sha256().update(username).digest('hex');
-			console.log(usernameHash);
-			// construct
-			svgConstruct(usernameHash);
+
+			// construct type
+			if (actual.shape == 'square' && actual.pixels == 'many') {
+				manySquare(usernameHash);
+			} else if (actual.shape == 'square' && actual.pixels == 'few') {
+				fewSquare(usernameHash);
+			} else if (actual.shape == 'circle' && actual.pixels == 'few') {
+				fewCircle(usernameHash);
+			}
 
 			/**
     * construction of the svg
     * @param {String} usernameHash  - username hashed
-    * @param {String} colour - passed hex colour
     */
-			function svgConstruct(usernameHash) {
+			function manySquare(usernameHash) {
 				var regexPat = /[02468ace]/g;
 				var svgConstruct = '';
 				svgConstruct += "<svg version=\"1.1\" \n                        xmlns=\"http://www.w3.org/2000/svg\" \n                        xmlns: xlink=\"http://www.w3.org/1999/xlink\" \n                        x=\"0px\" \n                        y=\"0px\"\n                        viewBox=\"0 0 50 50\" \n                        xml: space=\"preserve\">";
@@ -10963,23 +10968,77 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 						if (regexPat.test(usernameHash[charNo])) {
 							colour = '#ffffff';
 						}
-						svgConstruct += "<rect \n                                    x=\"" + x + "\"\n                                    y=\"" + y + "\" \n                                    width=\"5\" \n                                    height=\"5\" \n                                    style=\"fill: " + colour + ";\"/>";
+						svgConstruct += "<rect \n                x=\"" + x + "\"\n                y=\"" + y + "\" \n                width=\"5\" \n                height=\"5\" \n                style=\"fill: " + colour + ";\"/>";
 						// mirror
-						svgConstruct += "<rect \n                                    x=\"" + (45 - x) + "\"\n                                    y=\"" + y + "\" \n                                    width=\"5\" \n                                    height=\"5\" \n                                    style=\"fill: " + colour + ";\"/>";
+						svgConstruct += "<rect \n                x=\"" + (45 - x) + "\"\n                y=\"" + y + "\" \n                width=\"5\" \n                height=\"5\" \n                style=\"fill: " + colour + ";\"/>";
 						x += 5;
 					}
 					y += 5;
 				}
-
 				svgConstruct += "</svg>";
+				$(selector).append(svgConstruct);
+			}
 
+			/**
+    * construction of the svg
+    * @param {String} usernameHash  - username hashed
+    */
+			function fewSquare(usernameHash) {
+				var regexPat = /[02468ace]/g;
+				var svgConstruct = '';
+				svgConstruct += "<svg version=\"1.1\" \n                        xmlns=\"http://www.w3.org/2000/svg\" \n                        xmlns: xlink=\"http://www.w3.org/1999/xlink\" \n                        x=\"0px\" \n                        y=\"0px\"\n                        viewBox=\"0 0 50 50\" \n                        xml: space=\"preserve\">";
+				var y = 0;
+				for (var j = 0; j < 5; j++) {
+					var x = 0;
+					for (var i = 0; i < 3; i++) {
+						var charNo = j * 3 + i;
+						var colour = colourPicker(usernameHash, actual.colour);
+						if (regexPat.test(usernameHash[charNo])) {
+							colour = '#ffffff';
+						}
+						svgConstruct += "<rect \n                                    x=\"" + x + "\"\n                                    y=\"" + y + "\" \n                                    width=\"10\" \n                                    height=\"10\" \n                                    style=\"fill: " + colour + ";\"/>";
+						// mirror
+						svgConstruct += "<rect \n                                    x=\"" + (40 - x) + "\"\n                                    y=\"" + y + "\" \n                                    width=\"10\" \n                                    height=\"10\" \n                                    style=\"fill: " + colour + ";\"/>";
+						x += 10;
+					}
+					y += 10;
+				}
+				svgConstruct += "</svg>";
+				$(selector).append(svgConstruct);
+			}
+
+			/**
+    * construction of the svg
+    * @param {String} usernameHash  - username hashed
+    */
+			function fewCircle(usernameHash) {
+				var regexPat = /[02468ace]/g;
+				var svgConstruct = '';
+				svgConstruct += "<svg version=\"1.1\" \n                        xmlns=\"http://www.w3.org/2000/svg\" \n                        xmlns: xlink=\"http://www.w3.org/1999/xlink\" \n                        x=\"0px\" \n                        y=\"0px\"\n                        viewBox=\"0 0 50 50\" \n                        xml: space=\"preserve\">";
+				var y = 0;
+				for (var j = 0; j < 5; j++) {
+					var x = 0;
+					for (var i = 0; i < 3; i++) {
+						var charNo = j * 3 + i;
+						var colour = colourPicker(usernameHash, actual.colour);
+						if (regexPat.test(usernameHash[charNo])) {
+							colour = '#ffffff';
+						}
+						svgConstruct += "<circle \n                                    cx=\"" + (x + 5) + "\"\n                                    cy=\"" + (y + 5) + "\" \n                                    r=\"5\" \n                                    style=\"fill: " + colour + ";\"/>";
+						// // mirror
+						svgConstruct += "<circle \n                                    cx=\"" + (40 - x + 5) + "\"\n                                    cy=\"" + (y + 5) + "\" \n                                    r=\"5\" \n                                    style=\"fill: " + colour + ";\"/>";
+						x += 10;
+					}
+					y += 10;
+				}
+				svgConstruct += "</svg>";
 				$(selector).append(svgConstruct);
 			}
 
 			/**
     * Chooses colour from 16 predefined
     * @param {String} usernameHash - first char of hash to pick colour
-    * @param {String} colourOveride - overides random coolour selection with user selected colour
+    * @param {String} colourOveride - overides random coolour selection
     * @return {String} - returns a hex colour
     */
 			function colourPicker(usernameHash, colourOveride) {
@@ -11048,8 +11107,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 		var denticon = require('./denticon');
 
 		var options = {
-			pixels: 'many'
+			pixels: 'few',
+			shape: 'circle'
 		};
 
-		denticon.denticon('#denticon', 'terry', options);
+		denticon.denticon('#denticon', 'mike', options);
 	}, { "./denticon": 16 }] }, {}, [17]);
