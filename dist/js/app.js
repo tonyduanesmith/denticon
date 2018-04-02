@@ -10935,23 +10935,50 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 			var defaults = {
 				colour: 'default',
 				pixels: 'many',
-				shape: 'square',
+				pixelShape: 'square',
 				strokeColor: '#ffffff',
-				strokeWidth: 0
+				strokeWidth: 0,
+				size: 50,
+				containerShape: 'rounded',
+				borderWidth: 5
 			};
 			var actual = Object.assign({}, defaults, options);
 
 			//  hash username
 			var usernameHash = hash.sha256().update(username).digest('hex');
 
+			// style denticon
+			$(selector).width(actual.size).height(actual.size);
+			if (actual.containerShape == 'rounded') {
+				$(selector).css({
+					borderRadius: '5px',
+					borderWidth: actual.borderWidth,
+					width: actual.size,
+					height: actual.size
+				});
+			} else if (actual.containerShape == 'circle') {
+				$(selector).css({
+					borderRadius: actual.size,
+					borderWidth: actual.borderWidth,
+					width: actual.size,
+					height: actual.size
+				});
+			} else if (actual.containerShape == 'square') {
+				$(selector).css({
+					borderWidth: actual.borderWidth,
+					width: actual.size,
+					height: actual.size
+				});
+			}
+
 			// construct type
-			if (actual.shape == 'square' && actual.pixels == 'many') {
+			if (actual.pixelShape == 'square' && actual.pixels == 'many') {
 				manySquare(usernameHash);
-			} else if (actual.shape == 'square' && actual.pixels == 'few') {
+			} else if (actual.pixelShape == 'square' && actual.pixels == 'few') {
 				fewSquare(usernameHash);
-			} else if (actual.shape == 'circle' && actual.pixels == 'many') {
+			} else if (actual.pixelShape == 'circle' && actual.pixels == 'many') {
 				manyCircle(usernameHash);
-			} else if (actual.shape == 'circle' && actual.pixels == 'few') {
+			} else if (actual.pixelShape == 'circle' && actual.pixels == 'few') {
 				fewCircle(usernameHash);
 			}
 
@@ -11139,10 +11166,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 		var denticon = require('./denticon');
 
 		var options = {
-			pixels: 'many',
-			shape: 'square',
+			pixels: 'few',
+			pixelShape: 'square',
 			strokeWidth: 1,
-			strokeColor: '#353535'
+			size: 50,
+			containerShape: 'circle',
+			borderWidth: 3
 		};
 
 		denticon.denticon('#denticon', 'emma hewitt', options);
