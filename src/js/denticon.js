@@ -10,13 +10,15 @@ function denticon(selector, username, options) {
     // defaults
     let defaults = {
         colour: 'default',
-        pixels: 'many',
+        pixels: 'few',
         pixelShape: 'square',
         strokeColor: '#ffffff',
         strokeWidth: 0,
         size: 50,
         containerShape: 'rounded',
         borderWidth: 5,
+        borderColour: '#ffffff',
+        backgroundColour: '#ffffff',
     };
     let actual = Object.assign({}, defaults, options);
 
@@ -27,23 +29,35 @@ function denticon(selector, username, options) {
     $(selector).width(actual.size).height(actual.size);
     if (actual.containerShape == 'rounded') {
         $(selector).css({
-            borderRadius: '5px',
-            borderWidth: actual.borderWidth,
-            width: actual.size,
-            height: actual.size,
+            'overflow': 'hidden',
+            'border-radius': '5px',
+            'border-width': actual.borderWidth,
+            'border-color': actual.backgroundColour,
+            'border-style': 'solid',
+            'width': actual.size,
+            'height': actual.size,
+            'background-color': actual.backgroundColour,
         });
     } else if (actual.containerShape == 'circle') {
         $(selector).css({
-            borderRadius: actual.size,
-            borderWidth: actual.borderWidth,
-            width: actual.size,
-            height: actual.size,
+            'overflow': 'hidden',
+            'border-radius': actual.size,
+            'border-width': actual.borderWidth,
+            'border-color': actual.backgroundColour,
+            'border-style': 'solid',
+            'width': actual.size,
+            'height': actual.size,
+            'background-color': actual.backgroundColour,
         });
     } else if (actual.containerShape == 'square') {
         $(selector).css({
-            borderWidth: actual.borderWidth,
-            width: actual.size,
-            height: actual.size,
+            'overflow': 'hidden',
+            'border-width': actual.borderWidth,
+            'border-color': actual.backgroundColour,
+            'border-style': 'solid',
+            'width': actual.size,
+            'height': actual.size,
+            'background-color': actual.backgroundColour,
         });
     }
 
