@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const less = require('gulp-less');
 const babel = require('gulp-babel');
 const browserify = require('gulp-browserify');
+const rename = require('gulp-rename');
 
 gulp.task('less', () => {
     return gulp.src('src/less/main.less')
@@ -15,6 +16,7 @@ gulp.task('js', ()=>{
         .pipe(babel({
             presets: ['env'],
         }))
+        .pipe(rename('denticon.js'))
         .pipe(gulp.dest('dist/js'));
 });
 
