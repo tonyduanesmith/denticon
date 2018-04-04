@@ -11179,7 +11179,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 	}, { "hash.js": 1, "jquery": 14 }], 17: [function (require, module, exports) {
 		var denticon = require('./denticon');
 
-		denticon.denticon('#default1', 'tonyd');
+		denticon.denticon('#default1', 'sam');
 		denticon.denticon('#default2', 'james');
 		denticon.denticon('#default3', 'penman');
 		denticon.denticon('#default4', 'sedge');
