@@ -1,3 +1,5 @@
+'use strict';
+
 denticon('#default1', 'sam');
 denticon('#default2', 'james');
 denticon('#default3', 'penman');
@@ -7,10 +9,10 @@ denticon('#default6', 'harry');
 denticon('#default7', 'bez');
 denticon('#default8', 'joe');
 
-let options = {
+var options = {
     pixels: 'many',
     borderColour: '#eeeeee',
-    backgroundColour: '#eeeeee',
+    backgroundColour: '#eeeeee'
 };
 denticon('#squareMany1', 'tonyd', options);
 denticon('#squareMany2', 'james', options);
@@ -21,11 +23,11 @@ denticon('#squareMany6', 'harry', options);
 denticon('#squareMany7', 'bez', options);
 denticon('#squareMany8', 'joe', options);
 
-let options2 = {
+var options2 = {
     pixels: 'few',
     pixelShape: 'circle',
     borderColour: '#eeeeee',
-    backgroundColour: '#eeeeee',
+    backgroundColour: '#eeeeee'
 };
 denticon('#circleFew1', 'tonyd', options2);
 denticon('#circleFew2', 'james', options2);
@@ -36,11 +38,11 @@ denticon('#circleFew6', 'harry', options2);
 denticon('#circleFew7', 'bez', options2);
 denticon('#circleFew8', 'joe', options2);
 
-let options3 = {
+var options3 = {
     pixels: 'many',
     pixelShape: 'circle',
     borderColour: '#eeeeee',
-    backgroundColour: '#eeeeee',
+    backgroundColour: '#eeeeee'
 };
 denticon('#circleMany1', 'tonyd', options3);
 denticon('#circleMany2', 'james', options3);
@@ -51,20 +53,20 @@ denticon('#circleMany6', 'harry', options3);
 denticon('#circleMany7', 'bez', options3);
 denticon('#circleMany8', 'joe', options3);
 
-let options4 = {
+var options4 = {
     containerShape: 'circle',
     borderColour: '#eeeeee',
-    backgroundColour: '#eeeeee',
+    backgroundColour: '#eeeeee'
 };
-let options5 = {
+var options5 = {
     containerShape: 'rounded',
     borderColour: '#eeeeee',
-    backgroundColour: '#eeeeee',
+    backgroundColour: '#eeeeee'
 };
-let options6 = {
+var options6 = {
     containerShape: 'square',
     borderColour: '#eeeeee',
-    backgroundColour: '#eeeeee',
+    backgroundColour: '#eeeeee'
 };
 
 denticon('#containerShape1', 'tonyd', options5);
@@ -76,25 +78,25 @@ denticon('#containerShape6', 'harry', options4);
 denticon('#containerShape7', 'bez', options6);
 denticon('#containerShape8', 'joe', options6);
 
-let options7 = {
+var options7 = {
     size: 25,
     borderColour: '#eeeeee',
-    backgroundColour: '#eeeeee',
+    backgroundColour: '#eeeeee'
 };
-let options8 = {
+var options8 = {
     size: 45,
     borderColour: '#eeeeee',
-    backgroundColour: '#eeeeee',
+    backgroundColour: '#eeeeee'
 };
-let options9 = {
+var options9 = {
     size: 60,
     borderColour: '#eeeeee',
-    backgroundColour: '#eeeeee',
+    backgroundColour: '#eeeeee'
 };
-let options10 = {
+var options10 = {
     size: 70,
     borderColour: '#eeeeee',
-    backgroundColour: '#eeeeee',
+    backgroundColour: '#eeeeee'
 };
 
 denticon('#size1', 'tonyd', options7);
@@ -106,11 +108,10 @@ denticon('#size6', 'harry', options9);
 denticon('#size7', 'bez', options8);
 denticon('#size8', 'joe', options7);
 
-let headerDenticonOptions = {
+var headerDenticonOptions = {
     size: 55,
     borderColour: '#eeeeee',
-    backgroundColour: '#eeeeee',
+    backgroundColour: '#eeeeee'
 };
 
 denticon('#headerDenticon', 'denticon', headerDenticonOptions);
-

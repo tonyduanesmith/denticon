@@ -1,4 +1,3 @@
-const $ = require('jquery');
 const hash = require('hash.js');
 /**
  * main denticon creator function
@@ -6,7 +5,8 @@ const hash = require('hash.js');
  * @param {String} username - username used to create the denticon
  * @param {Object} options - specific options for denticon
  */
-function denticon(selector, username, options) {
+window.denticon = function(selector, username, options) {
+    $('#default1').addClass('test');
     // defaults
     let defaults = {
         colour: 'default',
@@ -32,7 +32,7 @@ function denticon(selector, username, options) {
             'overflow': 'hidden',
             'border-radius': '5px',
             'border-width': actual.borderWidth,
-            'border-color': actual.backgroundColour,
+            'border-color': actual.borderColour,
             'border-style': 'solid',
             'width': actual.size,
             'height': actual.size,
@@ -43,7 +43,7 @@ function denticon(selector, username, options) {
             'overflow': 'hidden',
             'border-radius': actual.size,
             'border-width': actual.borderWidth,
-            'border-color': actual.backgroundColour,
+            'border-color': actual.borderColour,
             'border-style': 'solid',
             'width': actual.size,
             'height': actual.size,
@@ -53,7 +53,7 @@ function denticon(selector, username, options) {
         $(selector).css({
             'overflow': 'hidden',
             'border-width': actual.borderWidth,
-            'border-color': actual.backgroundColour,
+            'border-color': actual.borderColour,
             'border-style': 'solid',
             'width': actual.size,
             'height': actual.size,
@@ -93,7 +93,7 @@ function denticon(selector, username, options) {
                 let charNo = (j * 5) + i;
                 let colour = colourPicker(usernameHash, actual.colour);
                 if (regexPat.test(usernameHash[charNo])) {
-                    colour = '#ffffff';
+                    colour = actual.backgroundColour;
                 }
                 svgConstruct += `<rect 
                 x="${x}"
@@ -141,7 +141,7 @@ function denticon(selector, username, options) {
                 let charNo = (j * 5) + i;
                 let colour = colourPicker(usernameHash, actual.colour);
                 if (regexPat.test(usernameHash[charNo])) {
-                    colour = '#ffffff';
+                    colour = actual.backgroundColour;
                 }
                 svgConstruct += `<circle 
                 cx="${x + 2.5}"
@@ -187,7 +187,7 @@ function denticon(selector, username, options) {
                 let charNo = (j * 3) + i;
                 let colour = colourPicker(usernameHash, actual.colour);
                 if (regexPat.test(usernameHash[charNo])) {
-                    colour = '#ffffff';
+                    colour = actual.backgroundColour;
                 }
                 svgConstruct += `<rect 
                                 x="${x}"
@@ -235,7 +235,7 @@ function denticon(selector, username, options) {
                 let charNo = (j * 3) + i;
                 let colour = colourPicker(usernameHash, actual.colour);
                 if (regexPat.test(usernameHash[charNo])) {
-                    colour = '#ffffff';
+                    colour = actual.backgroundColour;
                 }
                 svgConstruct += `<circle 
                                 cx="${x + 5}"
