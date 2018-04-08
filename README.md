@@ -13,13 +13,13 @@ cd denticon
 ```
 Add jQuery to the head of your html file.
 ```javascript
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous">
-    </script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous">
+</script>
 
 ```
 Add denticon.js file just before the closing tag of your body from the dist/js directory and make sure to copy into your project.
 ```javascript
-    <script src="js/denticon.js"></script>
+<script src="js/denticon.js"></script>
 ```
 You are now ready to use.
 
